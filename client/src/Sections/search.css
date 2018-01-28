@@ -1,0 +1,16 @@
+#resultContainer {
+    height: 200px;
+    overflow: auto;
+}
+
+.resultsSect {
+    margin-top: 10px;
+}
+
+a.btn.btn-primary {
+    color: #fff;
+}
+
+.card {
+    margin-bottom: 5px;
+}
