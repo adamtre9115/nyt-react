@@ -5,10 +5,11 @@ import Input from '../components/Form/input';
 import FormBtn from '../components/Form/formBtn';
 import Results from './Results';
 import API from '../utils/api';
-import './search.css';
+import './main.css';
 
 
-class Search extends Component {
+class Main extends Component {
+
     state = {
         topic: "",
         startYear: "",
@@ -71,7 +72,7 @@ class Search extends Component {
                 <h3 className="text-center">Results</h3>
                 { this.state.articles.map(article => (
                       <Results key={ article._id } uniqueId={ article._id } headline={ article.headline.main } snippet={ article.snippet } url={ article.web_url } pubDate={ article.pub_date }
-                      />
+                        click={ this.handleSaveSubmit } />
                   )) }
               </FormContainer>
             </div>
@@ -94,4 +95,4 @@ class Search extends Component {
     }
 }
 
-export default Search;
+export default Main;

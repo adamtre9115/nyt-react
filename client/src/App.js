@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Search from './Sections/Search';
+import Main from './Sections/Main';
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Search/>
+        <Main/>
       </div>
       );
   }
