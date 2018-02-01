@@ -21,6 +21,7 @@ export default {
                 if (response) {
                     resolve(response.data.response.docs);
                 } else {
+                    console.log(err);
                     reject(err);
                 }
             })
