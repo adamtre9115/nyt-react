@@ -7,16 +7,16 @@ const Results = props => {
     <div>
       <div className="card">
         <div className="card-header">
-          <p>
+          <p className="aHeadline">
             { props.headline }
           </p>
         </div>
         <div className="card-body">
-          <p>
+          <p className="aSnippet">
             { props.snippet }
           </p>
           <hr/>
-          <p>Published:
+          <p className="aDate">Published:
             { props.pubDate }
           </p>
           <div className="row">

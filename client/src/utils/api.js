@@ -26,8 +26,10 @@ export default {
                 }
             })
         })
+    },
+    saveArticles: function(articleData) {
+        return axios.post("/api/articles", articleData);
     }
-
 
     // newSearch();
 

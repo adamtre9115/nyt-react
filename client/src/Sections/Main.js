@@ -14,7 +14,8 @@ class Main extends Component {
         topic: "",
         startYear: "",
         endYear: "",
-        articles: []
+        articles: [],
+        saved: []
     }
 
     // Handles updating component state when the user types into the input field
@@ -46,24 +47,18 @@ class Main extends Component {
         }
     };
 
-    handleSaveSubmit = event => {
-        event.preventDefault();
-        // if (this.state.topic && this.state.startYear && this.state.endYear) {
-        //     API.searchArticles({
-        //         topic: this.state.topic,
-        //         startYear: this.state.startYear,
-        //         endYear: this.state.endYear
-        //     })
-        //         // .then(res => this.loadBooks())
-        //         // .catch(err => console.log(err));
-        //         .then(res => this.setState({
-        //             topic: "",
-        //             startYear: "",
-        //             endYear: "",
-        //             articles: res
-        //         }));
-        // }
-        console.log(`clicked!`);
+    handleSaveSubmit = e => {
+        e.preventDefault();
+        const findArticles = this.state.articles.find((el) => el._id);
+
+        const toSave = {
+            headline: findArticles.headline.main,
+            snippet: findArticles.snippet,
+            url: findArticles.web_url,
+            pub_date: findArticles.pub_date,
+            id: findArticles._id
+        }
+        API.saveArticles(toSave);
     };
     createResults = () => {
         return (
@@ -86,7 +81,7 @@ class Main extends Component {
               <Jumbotron/>
               <FormContainer id="searchSect">
                 <Input onChange={ this.handleInputChange } />
-                <FormBtn disabled={ !(this.state.topic && this.state.startYear && this.state.endYear) } onClick={ this.handleFormSubmit } say="Search" />
+                <FormBtn disabled={ !(this.state.topic && this.state.startYear && this.state.endYear) } onClick={ this.handleFormSubmit.bind(this) } say="Search" />
               </FormContainer>
               { /* Begin results section */ }
               { this.createResults() }
