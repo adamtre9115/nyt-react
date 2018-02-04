@@ -46,20 +46,27 @@ class Main extends Component {
                 }));
         }
     };
+    // check to make sure this is working properly
+    getArticles = event => {
+        API.getArticles()
+            .then(res => this.setState({
+                saved: res
+            }))
+    }
 
-    handleSaveSubmit = e => {
-        e.preventDefault();
-        const findArticles = this.state.articles.find((el) => el._id);
-
-        const toSave = {
+    handleSaveSubmit = (id) => {
+        // event.preventDefault();
+        const findArticles = this.state.articles.find((el) => el._id === id);
+        let toSave = {
             headline: findArticles.headline.main,
-            snippet: findArticles.snippet,
-            url: findArticles.web_url,
+            summary: findArticles.snippet,
+            link: findArticles.web_url,
             pub_date: findArticles.pub_date,
             id: findArticles._id
         }
-        API.saveArticles(toSave);
+        API.saveArticles(toSave)
     };
+
     createResults = () => {
         return (
             <div className="resultsSect">
@@ -67,7 +74,7 @@ class Main extends Component {
                 <h3 className="text-center">Results</h3>
                 { this.state.articles.map(article => (
                       <Results key={ article._id } uniqueId={ article._id } headline={ article.headline.main } snippet={ article.snippet } url={ article.web_url } pubDate={ article.pub_date }
-                        click={ this.handleSaveSubmit } />
+                        handleSaveSubmit={ this.handleSaveSubmit } />
                   )) }
               </FormContainer>
             </div>
@@ -81,7 +88,7 @@ class Main extends Component {
               <Jumbotron/>
               <FormContainer id="searchSect">
                 <Input onChange={ this.handleInputChange } />
-                <FormBtn disabled={ !(this.state.topic && this.state.startYear && this.state.endYear) } onClick={ this.handleFormSubmit.bind(this) } say="Search" />
+                <FormBtn disabled={ !(this.state.topic && this.state.startYear && this.state.endYear) } onClick={ this.handleFormSubmit } say="Search" />
               </FormContainer>
               { /* Begin results section */ }
               { this.createResults() }

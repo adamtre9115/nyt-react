@@ -21,7 +21,7 @@ const Results = props => {
           </p>
           <div className="row">
             <div className="col-sm-4">
-              <FormBtn data-value={ props.uniqueId } onClick={ props.click } say="Save" />
+              <FormBtn data-value={ props.uniqueId } onClick={ () => props.handleSaveSubmit(props.uniqueId) } say="Save" />
             </div>
             <div className="col-sm-4">
               <FormBtn href={ props.url } target="_blank" say="View Article" />

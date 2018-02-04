@@ -1,12 +1,7 @@
-const axios = require("axios");
-// var query = "president";
-// var beginDate = "2008";
-// var endDate = "2009";
-
-// console.log(url)
+import axios from 'axios';
 
 export default {
-
+    // Search the New York Times for articles relavent to the topic entered
     searchArticles: function newSearch(searchData) {
         const key = "b6bd0289a3a7474db3e886ae07244506";
         let topic = searchData.topic;
@@ -27,11 +22,13 @@ export default {
             })
         })
     },
+    // Here we'll save articles that are selected... Connects to route.post
     saveArticles: function(articleData) {
-        return axios.post("/api/articles", articleData);
+        return axios.post("/api/articles", articleData)
+
+    },
+
+    getArticles: function() {
+        return axios.get("/api/savedArticles");
     }
-
-    // newSearch();
-
-
 }

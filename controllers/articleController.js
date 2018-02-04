@@ -1,25 +1,29 @@
-const db = require("../models/articles");
+const articles = require("../models/articles");
 
 module.exports = {
     findAll: function(req, res) {
-        db.articles
-            .find(article)
+        articles
+            .find({})
             .sort({
                 timestamps: -1
             })
             .then(results => res.json(results));
     },
-    create: function(req, res) {
-        db.articles
-            .create(req.body)
+    create: function(artToSave, req, res) {
+        let newArticle = new articles(artToSave)
+        newArticle
+            .save()
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+            // console.log(`Posted!`)
+            // console.log(articles)
+            // console.log(req.params)
 
     },
     remove: function(req, res) {
         const key = req.body.key;
 
-        db.articles
+        articles
             .findByIdAndRemove(id)
             .then(articles => res.json(articles))
             .catch(err => console.log(err))

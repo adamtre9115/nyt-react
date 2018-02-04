@@ -28,11 +28,7 @@ var articleSchema = mongoose.Schema({
         trim: true,
         required: true
     },
-    isSaved: {
-        type: Boolean,
-        default: false
-    },
-    pub_date:{
+    pub_date: {
         type: Date,
         required: true
     },
