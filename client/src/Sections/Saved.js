@@ -22,6 +22,11 @@ const Saved = props => {
                 onClick={() => props.handleSaveSubmit(props.uniqueId)}
                 say="Delete"
               />
+              <FormBtn 
+                href={props.url} 
+                target="_blank" 
+                say="View Article" 
+              />
             </div>
           </div>
         </div>

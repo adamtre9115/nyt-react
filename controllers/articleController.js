@@ -5,7 +5,7 @@ module.exports = {
     articles
       .find({})
       .sort({ timestamps: -1 })
-      .then(dbModel => console.log(dbModel))
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(artToSave, req, res) {

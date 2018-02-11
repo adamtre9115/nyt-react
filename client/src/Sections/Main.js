@@ -17,8 +17,10 @@ class Main extends Component {
     savedArticles: []
   };
 
-  componentDidMount() {
+
+  componentWillMount() {
     this.getSavedArticles();
+
   }
   // Handles updating component state when the user types into the input field
   handleInputChange = event => {
@@ -57,10 +59,12 @@ class Main extends Component {
       .then(results => {
           this.setState({
               savedArticles: results.data
+          }, function(){
+              console.log(results.data)
           })
       })
     //   .catch(err => console.log(err));
-    console.log(this.state)
+   
   };
 
   
@@ -74,7 +78,8 @@ class Main extends Component {
       pub_date: findArticles.pub_date,
       id: findArticles._id
     };
-    API.saveArticles(toSave);
+    API.saveArticles(toSave)
+    this.getSavedArticles()
   };
 
   createResults = () => {
@@ -107,9 +112,9 @@ class Main extends Component {
             <Saved
               key={saved._id}
               uniqueId={saved._id}
-              headline={saved.headline.main}
-              snippet={saved.snippet}
-              url={saved.web_url}
+              headline={saved.headline}
+              snippet={saved.summary}
+              url={saved.link}
               pubDate={saved.pub_date}
               handleSaveSubmit={this.handleSaveSubmit}
             />
@@ -135,7 +140,7 @@ class Main extends Component {
         </FormContainer>
         {/* Begin results section */}
         {this.createResults()}
-        {/* {this.renderSaved()} */}
+        {this.renderSaved()}
       </div>
     );
   }
