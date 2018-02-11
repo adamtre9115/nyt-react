@@ -11,14 +11,14 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Configure body parser for AJAX requests
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 app.use(bodyParser.json());
 
 app.use("/api", routes);
-
-
 
 // Send every request to the React app
 // Define any API routes before this runs
